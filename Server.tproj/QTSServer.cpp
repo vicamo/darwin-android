@@ -135,13 +135,13 @@ QTSServer::~QTSServer()
     //
     // Grab the server mutex. This is to make sure all gets & set values on this
     // object complete before we start deleting stuff
-    OSMutexLocker serverlocker(this->GetServerObjectMutex());
+    OSMutexLocker* serverlocker = new OSMutexLocker(this->GetServerObjectMutex());
     
     //
     // Grab the prefs mutex. This is to make sure we can't reread prefs
     // WHILE shutting down, which would cause some weirdness for QTSS API
     // (some modules could get QTSS_RereadPrefs_Role after QTSS_Shutdown, which would be bad)
-    OSMutexLocker locker(this->GetPrefs()->GetMutex());
+    OSMutexLocker* locker = new OSMutexLocker(this->GetPrefs()->GetMutex());
 
     QTSS_ModuleState theModuleState;
     theModuleState.curRole = QTSS_Shutdown_Role;
@@ -152,6 +152,13 @@ QTSServer::~QTSServer()
         (void)QTSServerInterface::GetModule(QTSSModule::kShutdownRole, x)->CallDispatch(QTSS_Shutdown_Role, NULL);
 
     OSThread::SetMainThreadData(NULL);
+
+    delete fRTPMap;
+    delete fSocketPool;
+    delete fSrvrMessages;
+    delete locker;
+    delete serverlocker;
+    delete fSrvrPrefs;
 }
 
 Bool16 QTSServer::Initialize(XMLPrefsParser* inPrefsSource, PrefsSource* inMessagesSource, UInt16 inPortOverride, Bool16 createListeners)
