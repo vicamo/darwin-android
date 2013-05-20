@@ -58,10 +58,10 @@ extern "C" {
 #ifdef __USE_MAX_PRINTF__
 	#define qtss_printf qtss_maxprintf
 #else
-    extern int qtss_printf(const char *fmt, ...);
-    
+	#define qtss_printf _qtss_printf
 #endif
 
+extern int _qtss_printf(const char *fmt, ...);
 extern int qtss_sprintf(char *buffer, const char *fmt,...);
 extern int qtss_fprintf(FILE *file, const char *fmt, ...);
 extern int qtss_snprintf(char *str, size_t size, const char *format, ...);

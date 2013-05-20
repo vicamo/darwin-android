@@ -99,7 +99,7 @@ int qtss_maxprintf(const char *fmt,  ...)
 #endif
 
 
-int qtss_printf(const char *fmt,  ...)
+int _qtss_printf(const char *fmt,  ...)
 {
     if (fmt == NULL)
         return -1;
