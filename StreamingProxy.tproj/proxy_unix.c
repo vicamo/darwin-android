@@ -45,7 +45,11 @@
 #include <netdb.h>
 
 #include <sys/resource.h>
-#include <sys/signal.h>
+#if defined(ANDROID)
+# include <signal.h>
+#else
+# include <sys/signal.h>
+#endif
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
