@@ -50,7 +50,7 @@
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#if !(defined(__solaris__) || defined(__osf__) || defined(__hpux__))
+#if !(defined(__solaris__) || defined(__osf__) || defined(__hpux__) || defined(ANDROID))
 	#include <sys/sysctl.h>
 #endif
 #include <sys/time.h>

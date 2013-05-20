@@ -44,7 +44,7 @@
     #if defined (__solaris__) || defined (__osf__) || defined (__hpux__)
         #include "daemon.h"
     #else
-        #ifndef __FreeBSD__
+        #if !(defined(__FreeBSD__) || defined(ANDROID))
             #include <sys/sysctl.h>
         #endif
     #endif
