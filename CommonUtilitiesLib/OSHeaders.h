@@ -119,7 +119,7 @@
     #define TW0_CHARS_TO_INT( c1, c2 )  ( c1 << 8 | c2 )
 
     
-#elif __linux__ || __linuxppc__ || __FreeBSD__
+#elif defined(__linux__) || defined(__linuxppc__) || defined(__FreeBSD__)
     /* Defines */
     #define _64BITARG_ "q"
     #define _S64BITARG_ "lld"

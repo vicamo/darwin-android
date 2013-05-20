@@ -69,7 +69,7 @@
     #include <sys/sysctl.h>
 #endif
 
-#if (__solaris__ || __linux__ || __linuxppc__)
+#if (__solaris__ || defined(__linux__) || __linuxppc__)
     #include "StringParser.h"
 #endif
 
@@ -367,7 +367,7 @@ UInt32  OS::GetNumProcessors()
     return (UInt32) numCPUs;
 #endif
 
-#if(__linux__ || __linuxppc__)
+#if defined(__linux__) || defined(__linuxppc__)
     
     char cpuBuffer[8192] = "";
     StrPtrLen cpuInfoBuf(cpuBuffer, sizeof(cpuBuffer));

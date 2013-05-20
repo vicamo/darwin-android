@@ -340,7 +340,7 @@ void SocketUtils::Initialize(Bool16 lookupDNSName)
     ifc.ifc_len = kMaxAddrBufferSize;
     ifc.ifc_buf = buffer;
 
-#if __linux__ || __linuxppc__ || __solaris__ || __MacOSX__ || __sgi__ || __osf__
+#if defined(__linux__) || __linuxppc__ || __solaris__ || __MacOSX__ || __sgi__ || __osf__
     int err = ::ioctl(tempSocket, SIOCGIFCONF, (char*)&ifc);
 #elif __FreeBSD__
     int err = ::ioctl(tempSocket, OSIOCGIFCONF, (char*)&ifc);

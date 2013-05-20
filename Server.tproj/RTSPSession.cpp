@@ -56,7 +56,7 @@
 
 #include <errno.h>
 
-#if __solaris__ || __linux__ || __sgi__	|| __hpux__
+#if __solaris__ || defined(__linux__) || __sgi__ || __hpux__
     #include <crypt.h>
 #endif
 

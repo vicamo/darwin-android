@@ -176,7 +176,7 @@ Bool16 RunInForeground();
 Bool16 RunInForeground()
 {
 
-    #if __linux__ || __MacOSX__
+    #if defined(__linux__) || __MacOSX__
          (void) setvbuf(stdout, NULL, _IOLBF, 0);
          OSThread::WrapSleep(true);
     #endif
@@ -237,7 +237,7 @@ int main(int argc, char * argv[])
     (void)::sigaction(SIGALRM, &act, NULL);
 
 
-#if __solaris__ || __linux__ || __hpux__
+#if __solaris__ || defined(__linux__) || __hpux__
     //grow our pool of file descriptors to the max!
     struct rlimit rl;
     

@@ -82,7 +82,7 @@ pthread_attr_t OSThread::sThreadAttr;
 char  OSThread::sUser[128]= "";
 char  OSThread::sGroup[128]= "";
 
-#if __linux__ ||  __MacOSX__
+#if defined(__linux__) ||  __MacOSX__
 Bool16  OSThread::sWrapSleep = true;
 #endif
 
@@ -194,7 +194,7 @@ void OSThread::Sleep(UInt32 inMsec)
 
 #ifdef __Win32__
     ::Sleep(inMsec);
-#elif __linux__ ||  __MacOSX__
+#elif defined(__linux__) ||  __MacOSX__
 
     if (inMsec == 0)
         return;
@@ -266,7 +266,7 @@ void* OSThread::_Entry(void *inThread)  //static
 
 Bool16  OSThread::SwitchPersonality()
 {
-#if __linux__
+#if defined(__linux__)
    if (::strlen(sGroup) > 0)
     {
         struct group* gr = ::getgrnam(sGroup);

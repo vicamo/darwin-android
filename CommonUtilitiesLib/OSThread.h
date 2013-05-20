@@ -94,7 +94,7 @@ public:
                 void            DecrementLocksHeld() {}
 #endif
 
-#if __linux__ ||  __MacOSX__
+#if defined(__linux__) ||  defined(__MacOSX__)
                 static void     WrapSleep( Bool16 wrapSleep) {sWrapSleep = wrapSleep; }
 #endif
 
@@ -146,7 +146,7 @@ private:
     static void*    _Entry(void* inThread);
 #endif
 
-#if __linux__ || __MacOSX__
+#if defined(__linux__) || defined(__MacOSX__)
     static Bool16 sWrapSleep;
 #endif
 

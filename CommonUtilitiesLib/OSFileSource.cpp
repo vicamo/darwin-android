@@ -339,7 +339,7 @@ void OSFileSource::Set(const char *inPath)
     
 #if __Win32__
     fFile = open(inPath, O_RDONLY | O_BINARY);
-#elif __linux__
+#elif defined(__linux__)
     fFile = open(inPath, O_RDONLY | O_LARGEFILE);
 #else
     fFile = open(inPath, O_RDONLY);

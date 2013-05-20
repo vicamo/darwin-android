@@ -98,7 +98,7 @@
     #define USE_DEFAULT_STD_LIB 1
 #endif
 
-#elif __linux__ 
+#elif defined(__linux__)
 
 #include <endian.h>
 #if __BYTE_ORDER == BIG_ENDIAN
