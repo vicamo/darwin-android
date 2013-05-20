@@ -83,6 +83,10 @@
 #define RTCP_TESTING 0
 
 
+#if defined(ANDROID)
+typedef __in_port_t in_port_t;
+#endif
+
 QTSSAttrInfoDict::AttrInfo  RTPStream::sAttributes[] = 
 {   /*fields:   fAttrName, fFuncPtr, fAttrDataType, fAttrPermission */
     /* 0  */ { "qtssRTPStrTrackID",                 NULL,   qtssAttrDataTypeUInt32, qtssAttrModeRead | qtssAttrModePreempSafe | qtssAttrModeWrite },

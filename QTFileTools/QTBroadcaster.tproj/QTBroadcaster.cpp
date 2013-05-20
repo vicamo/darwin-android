@@ -42,6 +42,10 @@
 
 #include "QTRTPFile.h"
 
+#if defined(ANDROID)
+typedef __in_port_t in_port_t;
+#endif
+
 //extern char       *optarg;
 //extern int        optind;
     
