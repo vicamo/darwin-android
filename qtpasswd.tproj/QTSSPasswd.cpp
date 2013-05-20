@@ -56,10 +56,6 @@
    #include <pwd.h>
 #endif
 
-#ifdef __solaris__
-	#include <crypt.h>
-#endif
-
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -71,8 +67,10 @@
 #include "defaultPaths.h"
 #include "revision.h"
 
-#ifdef __linux__
+#if defined(__linux__) && !defined(ANDROID)
     #include <time.h>
+    #include <crypt.h>
+#elif defined(__solaris__)
     #include <crypt.h>
 #endif
 
@@ -246,7 +244,7 @@ static void PutWord(FILE *f, char *l, char endChar)
 	fputc(endChar, f);
 }
 
-#if __Win32__
+#if defined(__Win32__) || defined(ANDROID)
 /*
  * Windows lacks getpass().  So we'll re-implement it here.
  */
@@ -258,7 +256,11 @@ static char *getpass(const char *prompt)
   
   fputs(prompt, stderr);
   
+#if defined(__Win32__)
   while ((password[n] = _getch()) != '\r') {
+#else
+  while ((password[n] = getchar()) != '\r') {
+#endif
     
     if(n == MAX_PASSWORD_LEN) {
       fputs("password can't be longer than MAX_PASSWORD_LEN chars.\n", stderr);
@@ -317,7 +319,7 @@ static void AddPasswordWithoutPrompt(char *user, char* password, char* realm, FI
     char cpw[120], *dpw;
     int crpwLen = 0;
 
-#ifdef __Win32__
+#if defined(__Win32__) || defined(ANDROID)
     MD5Encode((char *)password, (char *)salt, cpw, sizeof(cpw));
 #else
     char *crpw = (char *)crypt(password, salt); // cpw is crypt of password
@@ -368,7 +370,7 @@ static void AddPassword(char *user, char* realm, FILE *f)
     to64(&salt[0], rand(), 8);
     salt[8] = '\0';
 
-#ifdef __Win32__
+#if defined(__Win32__) || defined(ANDROID)
     MD5Encode((char *)pw, (char *)salt, cpw, sizeof(cpw));
 #else
     crpw = (char *)crypt(pw, salt); // cpw is crypt of password

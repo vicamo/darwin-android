@@ -56,7 +56,9 @@
 
 #include <errno.h>
 
-#if __solaris__ || defined(__linux__) || __sgi__ || __hpux__
+#if defined(ANDROID)
+// Android has no libcrypt, so we still hash passwords with md5().
+#elif __solaris__ || defined(__linux__) || __sgi__ || __hpux__
     #include <crypt.h>
 #endif
 
@@ -1484,8 +1486,8 @@ void RTSPSession::CheckAuthentication() {
         }
                 else
         {
-#ifdef __Win32__
-          // The password is md5 encoded for win32
+#if defined(__Win32__) || defined(ANDROID)
+          // The password is md5 encoded for win32 and android
           char md5EncodeResult[120];
           // no memory is allocated in this function call
           MD5Encode(reqPasswdStr, userPasswdStr, md5EncodeResult, sizeof(md5EncodeResult));

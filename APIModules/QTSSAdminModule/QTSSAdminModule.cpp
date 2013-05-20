@@ -57,7 +57,9 @@
 #include <Security/AuthorizationTags.h>
 #endif
 
-#if __solaris__ || defined(__linux__) || __sgi__ || __hpux__
+#if defined(ANDROID)
+// Android has no libcrypt, so we still hash passwords with md5().
+#elif __solaris__ || defined(__linux__) || __sgi__ || __hpux__
 	#include <crypt.h>
 #endif
 
@@ -662,8 +664,8 @@ Bool16  Authenticate(QTSS_RTSPRequestObject request, StrPtrLen* namePtr, StrPtrL
             authenticated = false;
         }
         else {
-#ifdef __Win32__
-            // The password is md5 encoded for win32
+#if defined(__Win32__) || defined(ANDROID)
+            // The password is md5 encoded for win32 and android.
             char md5EncodeResult[120];
             MD5Encode(reqPassword, userPassword, md5EncodeResult, sizeof(md5EncodeResult));
             if(::strcmp(userPassword, md5EncodeResult) != 0)
