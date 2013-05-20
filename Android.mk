@@ -200,6 +200,8 @@ LOCAL_STATIC_LIBRARIES := \
   darwin-QTFileLib \
   $(empty)
 
+LOCAL_LDFLAGS := -ldl
+
 include $(BUILD_EXECUTABLE)
 
 $(LOCAL_INSTALLED_MODULE): darwin-config-targets darwin-module-targets
