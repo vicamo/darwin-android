@@ -204,19 +204,18 @@ include $(BUILD_EXECUTABLE)
 $(LOCAL_INSTALLED_MODULE): darwin-config-targets darwin-module-targets
 $(call darwin-add-to-targets,$(LOCAL_MODULE),executable mandatory)
 
+ifneq ($(strip $(BOARD_HAVE_NO_DARWIN_STREAMINGSERVER_XML)),)
 #
 # Configuration files.
 #
 files := \
-  streamingserver.xml-POSIX:streamingserver.xml \
-  qtusers:qtusers \
-  qtgroups:qtgroups \
+  streamingserver.xml-ANDROID:streamingserver.xml \
   $(empty)
-# relayconfig.xml-Sample:relayconfig.xml
 $(call darwin-add-prebilt-files-to-module-path,$(files))
 
 $(call darwin-add-to-targets, \
   $(foreach f,$(files),$(call word-colon,2,$(f))),config)
+endif
 
 #
 # Sample media files.
