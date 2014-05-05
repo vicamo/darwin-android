@@ -65,7 +65,6 @@ endef
 #
 include $(CLEAR_VARS)
 LOCAL_MODULE := DarwinStreamingServer
-LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT_SBIN)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_C_INCLUDES := \
