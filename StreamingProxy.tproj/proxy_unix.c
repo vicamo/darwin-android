@@ -555,7 +555,7 @@ void DoStats(stats_chunk *stats)
 /**********************************************/
 void ErrorString(char *string)
 {
-    fprintf(stderr, string);
+    fprintf(stderr, "%s", string);
 }
 
 /**********************************************/

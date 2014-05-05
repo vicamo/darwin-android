@@ -39,4 +39,4 @@ LOCAL_SRC_FILES := \
 
 include $(BUILD_EXECUTABLE)
 
-$(call darwin-add-to-targets,streamingloadtool.conf,executable)
+$(call darwin-add-to-targets,$(LOCAL_MODULE),executable)
