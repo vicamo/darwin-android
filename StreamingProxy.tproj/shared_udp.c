@@ -47,7 +47,9 @@
 #include <netdb.h>
 #include <sys/resource.h>
 #include <signal.h>
-#include <sys/signal.h>
+#if !defined(ANDROID)
+# include <sys/signal.h>
+#endif
 #include <sys/socket.h>
 #elif defined(win32)
 #include "WINSOCK.H"
