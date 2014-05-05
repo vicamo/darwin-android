@@ -43,7 +43,12 @@
 #include "QTRTPFile.h"
 
 #if defined(ANDROID)
+#include <android/api-level.h>
+#if __ANDROID_API__ >= 10
+typedef uint16_t in_port_t;
+#else
 typedef __in_port_t in_port_t;
+#endif
 #endif
 
 //extern char       *optarg;
