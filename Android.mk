@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 DARWIN_TOPSRCDIR := $(LOCAL_PATH)
 DARWIN_INSTALLED_MODULE_DIR := $(TARGET_OUT_SHARED_LIBRARIES)/StreamingServerModules
 DARWIN_INSTALLED_ETC_DIR := $(TARGET_OUT_ETC)/streaming
-DARWIN_INSTALLED_MEDIA_DIR := $(TARGET_OUT_DATA)/streaming
+DARWIN_INSTALLED_MEDIA_DIR := $(TARGET_OUT)/media/streaming
 
 .PHONY: all-darwin-targets darwin-sample-targets darwin-config-targets \
   darwin-module-targets darwin-executable-targets darwin-mandatory-targets

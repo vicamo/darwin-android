@@ -54,6 +54,17 @@
 # define DEFAULTPATHS_MOVIES_DIR        "/Library/QuickTimeStreaming/Movies/"
 # define DEFAULTPATHS_PID_DIR           "/var/run/"
 
+#elif defined(ANDROID)
+
+# define DEFAULTPATHS_DIRECTORY_SEPARATOR	"/"
+
+# define DEFAULTPATHS_ETC_DIR			"/system/etc/streaming/"
+# define DEFAULTPATHS_ETC_DIR_OLD		"/system/etc/"
+# define DEFAULTPATHS_SSM_DIR			"/system/lib/StreamingServerModules/"
+# define DEFAULTPATHS_LOG_DIR			"/data/misc/streaming/logs/"
+# define DEFAULTPATHS_MOVIES_DIR        "/system/media/streaming/"
+# define DEFAULTPATHS_PID_DIR           "/data/misc/streaming/"
+
 #else
 
 # define DEFAULTPATHS_DIRECTORY_SEPARATOR	"/"
