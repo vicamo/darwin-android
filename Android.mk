@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 DARWIN_TOPSRCDIR := $(LOCAL_PATH)
 DARWIN_INSTALLED_MODULE_DIR := $(TARGET_OUT_SHARED_LIBRARIES)/StreamingServerModules
 DARWIN_INSTALLED_ETC_DIR := $(TARGET_OUT_ETC)/streaming
-DARWIN_INSTALLED_MEDIA_DIR := $(TARGET_OUT_DATA)/streaming
+DARWIN_INSTALLED_MEDIA_DIR := $(TARGET_OUT)/media/streaming
 
 .PHONY: all-darwin-targets darwin-sample-targets darwin-config-targets \
   darwin-module-targets darwin-executable-targets darwin-mandatory-targets
@@ -206,19 +206,18 @@ include $(BUILD_EXECUTABLE)
 $(LOCAL_INSTALLED_MODULE): darwin-config-targets darwin-module-targets
 $(call darwin-add-to-targets,$(LOCAL_MODULE),executable mandatory)
 
+ifneq ($(strip $(BOARD_HAVE_NO_DARWIN_STREAMINGSERVER_XML)),)
 #
 # Configuration files.
 #
 files := \
-  streamingserver.xml-POSIX:streamingserver.xml \
-  qtusers:qtusers \
-  qtgroups:qtgroups \
+  streamingserver.xml-ANDROID:streamingserver.xml \
   $(empty)
-# relayconfig.xml-Sample:relayconfig.xml
 $(call darwin-add-prebilt-files-to-module-path,$(files))
 
 $(call darwin-add-to-targets, \
   $(foreach f,$(files),$(call word-colon,2,$(f))),config)
+endif
 
 #
 # Sample media files.
