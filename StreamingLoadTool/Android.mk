@@ -67,13 +67,3 @@ LOCAL_STATIC_LIBRARIES := \
 include $(BUILD_EXECUTABLE)
 
 $(call darwin-add-to-targets,$(LOCAL_MODULE),executable)
-$(LOCAL_INSTALLED_MODULE): streamingloadtool.conf
-
-$(call darwin-add-prebilt-file-to-module-path, \
-  StreamingLoadTool/streamingloadtool.conf, \
-  streamingloadtool.conf, \
-  $(DARWIN_INSTALLED_ETC_DIR), \
-  ETC \
-)
-
-$(call darwin-add-to-targets,$(LOCAL_MODULE),config)

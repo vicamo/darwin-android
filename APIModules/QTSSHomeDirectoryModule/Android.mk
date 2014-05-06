@@ -62,7 +62,7 @@ $(call darwin-add-to-targets,$(LOCAL_MODULE),module)
 $(call darwin-add-prebilt-file-to-module-path, \
   APIModules/QTSSHomeDirectoryModule/createuserstreamingdir, \
   createuserstreamingdir, \
-  , \
+  $(TARGET_OUT_EXECUTABLES), \
   EXECUTABLES \
 )
 
