@@ -207,6 +207,11 @@ QTSS_Error QTSSModule::LoadFromDisk(QTSS_MainEntryPointPtr* outEntrypoint)
         theBundleTruncator.ConsumeUntil(&theFileName, '.'); // strip off the ".bundle"
 #endif
 
+#if defined(ANDROID)
+    StringParser theSOTruncator(&theFileName);
+    theSOTruncator.ConsumeUntil(&theFileName, '.'); // strip off the ".so"
+#endif
+
     // At this point, theFileName points to the file name. Make this the module name.
     this->SetValue(qtssModName, 0, theFileName.Ptr, theFileName.Len, QTSSDictionary::kDontObeyReadOnly);
     

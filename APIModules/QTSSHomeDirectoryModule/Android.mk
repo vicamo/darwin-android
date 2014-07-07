@@ -16,7 +16,7 @@
 #LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := QTSSHomeDirModule
+LOCAL_MODULE := QTSSHomeDirectoryModule
 LOCAL_MODULE_PATH := $(DARWIN_INSTALLED_MODULE_DIR)
 LOCAL_MODULE_TAGS := optional
 
