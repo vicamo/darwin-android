@@ -20,9 +20,6 @@ LOCAL_MODULE := QTSSSpamDefenseModule
 LOCAL_MODULE_PATH := $(DARWIN_INSTALLED_MODULE_DIR)
 LOCAL_MODULE_TAGS := optional
 
-# Here we play a trick to avoid the '.so' suffix.
-LOCAL_UNINSTALLABLE_MODULE := true
-
 LOCAL_C_INCLUDES := \
   $(addprefix $(DARWIN_TOPSRCDIR)/, \
     APIModules/QTSSSpamDefenseModule.bproj \
@@ -57,10 +54,5 @@ LOCAL_STATIC_LIBRARIES := \
 LOCAL_PRELINK_MODULE := false
 
 include $(BUILD_SHARED_LIBRARY)
-
-installed_qtss_module := $(LOCAL_MODULE_PATH)/$(LOCAL_MODULE)
-$(eval $(call copy-one-file,$(LOCAL_BUILT_MODULE),$(installed_qtss_module)))
-
-$(LOCAL_MODULE): $(installed_qtss_module)
 
 $(call darwin-add-to-targets,$(LOCAL_MODULE),module)
