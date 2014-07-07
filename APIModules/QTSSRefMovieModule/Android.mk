@@ -20,10 +20,6 @@ LOCAL_MODULE := QTSSRefMovieModule
 LOCAL_MODULE_PATH := $(DARWIN_INSTALLED_MODULE_DIR)
 LOCAL_MODULE_TAGS := optional
 
-# Here we play a trick to avoid the '.so' suffix.
-LOCAL_MODULE_STEM := QTSSRefMovie
-LOCAL_MODULE_SUFFIX := Module
-
 LOCAL_C_INCLUDES := \
   $(addprefix $(DARWIN_TOPSRCDIR)/, \
     APIModules/QTSSRefMovieModule \

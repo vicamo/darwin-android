@@ -16,13 +16,9 @@
 #LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := QTSSHomeDirectoryModule
+LOCAL_MODULE := QTSSHomeDirModule
 LOCAL_MODULE_PATH := $(DARWIN_INSTALLED_MODULE_DIR)
 LOCAL_MODULE_TAGS := optional
-
-# Here we play a trick to avoid the '.so' suffix.
-LOCAL_MODULE_STEM := QTSSHomeDirectory
-LOCAL_MODULE_SUFFIX := Module
 
 LOCAL_C_INCLUDES := \
   $(addprefix $(DARWIN_TOPSRCDIR)/, \
